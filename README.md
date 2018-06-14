@@ -1,1 +1,1 @@
-# worldcup-sweepstake
+# Worldcup Sweepstake
