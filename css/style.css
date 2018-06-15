@@ -1,0 +1,69 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: arial, helvetica, sans-serif;
+}
+
+header {
+	background-color: black;
+	padding: 20px;
+}
+
+header h1 {
+	color: white;
+	margin: 0;
+}
+
+#today {
+	padding: 20px 0;
+}
+
+.todays-matches-container {
+	text-align: center;
+}
+
+.todays-matches-container h2 {
+	margin: 0 0 20px;
+}
+
+.todays-matches .match {
+	overflow: hidden;
+}
+
+.todays-matches .match:nth-child(odd) {
+	background: #fff;
+}
+
+.todays-matches .match .home {
+	display: inline-block;
+	width: calc(50% - 60px);
+}
+
+.todays-matches .match .away {
+	display: inline-block;
+	width: calc(50% - 60px);
+}
+
+.todays-matches .match .time-vs {
+	display: inline-block;
+	width: 120px;
+}
+
+.todays-matches .match .time-vs .goals {
+	display: inline-block;
+	background: black;
+	margin: 2px;
+	color: white;
+	padding: 5px;
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+}
+
+.todays-matches .match .time-vs .goals.goals--home {
+	margin-left: 24px;
+}
+
+.todays-matches .match .time-vs .goals.goals--away {
+	margin-right: 24px;
+}
