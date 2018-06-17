@@ -7,14 +7,17 @@ $(function() {
 	const groupResults = 'http://worldcup.sfg.io/teams/group_results';
 	const participants = 'http://files.sequelgroup.co.uk/sweepstake/participants.json';
 
-	const joinJson = () => {
-
+	const joinJson = (file) => {
+		$.getJSON(file, function(data) {
+			//console.log(data);
+		
+		});
 	}
+	joinJson(matchesToday)
+
 
 	const todaysMatches = () => {
 		$.getJSON(matchesToday, function(data) {
-
-			console.log(data);
 			
 			for(i = 0; i < data.length; i++) {
 
@@ -25,10 +28,6 @@ $(function() {
 			    let homeGoals = data[i].home_team.goals;
 			    let awayGoals = data[i].away_team.goals;
 			    let time = [];
-
-			    console.log(datetime);
-
-			    // console.log(datetime);
 			    
 			    var $match = $('<div>', { 'class': 'match' }),
 			    	$home = $('<div>', { 'class': 'home' }),
@@ -56,6 +55,58 @@ $(function() {
 	};
 
 	todaysMatches();
+
+	const groups = () => {
+		$.getJSON(groupResults, function(data) {
+			
+			for(i = 0; i < data.length; i++) {
+
+
+				let groupLetter = data[i].group.letter;
+				let teamsList = data[i].group.teams;
+
+				var $container = $('<div>', { 'class': 'group' }),
+					$table = $('<table>'),
+					$thead = $('<thead>'),
+					$tbody = $('<tbody>');
+
+					$container.append($('<h4>', { 'text': 'Group ' + groupLetter}));
+
+					$container.append($table);
+					$table.append($thead);
+					$table.append($tbody);
+
+					$thead.append($('<th>', { 'text': 'Country' }));
+					$thead.append($('<th>', { 'text': 'GD' }));
+					$thead.append($('<th>', { 'text': 'Pts' }));
+
+
+					
+				for(j = 0; j < teamsList.length; j++) {
+
+					let country = teamsList[j].team.country;
+					let gd = teamsList[j].team.goal_differential;
+					let pts = teamsList[j].team.points;
+
+					console.log(teamsList[j]);
+
+					var $tr = $('<tr>');
+
+
+					$tbody.append($tr);
+					$tr.append($('<th>', {'text' : country}));
+					$tr.append($('<td>', {'text' : gd}));
+					$tr.append($('<td>', {'text' : pts}));
+				}
+
+				$('.group-stage').append($container);
+			   
+			}
+
+		});
+	};
+
+	groups();
 
 
 });
