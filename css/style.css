@@ -14,6 +14,11 @@ header h1 {
 	margin: 0;
 }
 
+.section-title {
+	text-align: center;
+    margin: 20px 0;
+}
+
 #today {
 	padding: 20px 0;
 }
@@ -67,3 +72,72 @@ header h1 {
 .todays-matches .match .time-vs .goals.goals--away {
 	margin-right: 24px;
 }
+
+.group-stage {
+	max-width: 960px;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.group-stage .group {
+	width: 25%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.group-stage .group h4 {
+    margin: 24px 0 0;
+    text-align: center;
+}
+
+.group-stage .group table {
+	border: none;
+	border-spacing: 0;
+	width: 100%;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+.group-stage .group table thead {
+	background: #eee;
+}
+
+.group-stage .group table thead th {
+    border-bottom: 1px solid #dbdbdb;
+    padding-top: 1rem;
+    padding-bottom: 0.25rem;
+    vertical-align: bottom;
+    text-align: left;
+    padding: 1rem 6px 0.25rem 6px;
+}
+
+.group-stage .group table tbody tr {
+	
+} 
+
+.group-stage .group table tbody tr td {
+	padding: 10px 6px;
+	border-bottom: 1px solid #eee;
+} 
+
+.group-stage .group table tbody tr th {
+	padding: 4px 6px;
+	border-bottom: 1px solid #eee;
+} 
+
+.group-stage .group table tr th {
+	text-align: left;
+}
+
+@media only screen and (max-width: 800px) {
+    .group-stage .group {
+    	width: 50%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .group-stage .group {
+    	width: 100%;
+    }
+}
+
