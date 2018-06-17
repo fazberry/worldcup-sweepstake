@@ -9,10 +9,9 @@ $(function() {
 
 	const joinJson = (file1, file2) => {
 	    $.getJSON(file1, function(data1) {
-	    	console.log(data1);
+
 	        $.getJSON(file2, function(data2) {
-	        	console.log(data2);
-	            
+	            console.log(data1);
 	        	var teams = data1,
 			    codes = data2,
 			    codesMap = new Map(codes.map(({ code, participant }) => [code, participant])),
@@ -23,7 +22,16 @@ $(function() {
 			            ))
 			    );
 
-				console.log(result);
+			    console.log(result);
+
+			    resultTwo = teams.map(
+			        ({ home_team, ...items }) =>
+			            Object.assign({ home_team }, ...Object.entries(items).map(
+			                ([k, v]) => ({ [k]: Object.assign({}, v, codesMap.get(v.code)) })
+			            ))
+			    );
+
+			    console.log(resultTwo);
 	        });
 	    });   
 	}
