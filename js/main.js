@@ -7,13 +7,28 @@ $(function() {
 	const groupResults = 'http://worldcup.sfg.io/teams/group_results';
 	const participants = 'http://files.sequelgroup.co.uk/sweepstake/participants.json';
 
-	const joinJson = (file) => {
-		$.getJSON(file, function(data) {
-			//console.log(data);
-		
-		});
+	const joinJson = (file1, file2) => {
+	    $.getJSON(file1, function(data1) {
+	    	console.log(data1);
+	        $.getJSON(file2, function(data2) {
+	        	console.log(data2);
+	            
+	        	var teams = data1,
+			    codes = data2,
+			    codesMap = new Map(codes.map(({ code, participant }) => [code, participant])),
+			    result = teams.map(
+			        ({ away_team, ...items }) =>
+			            Object.assign({ away_team }, ...Object.entries(items).map(
+			                ([k, v]) => ({ [k]: Object.assign({}, v, codesMap.get(v.code)) })
+			            ))
+			    );
+
+				console.log(result);
+	        });
+	    });   
 	}
-	joinJson(matchesToday)
+
+	joinJson(matchesToday, participants);
 
 
 	const todaysMatches = () => {
@@ -87,8 +102,6 @@ $(function() {
 					let country = teamsList[j].team.country;
 					let gd = teamsList[j].team.goal_differential;
 					let pts = teamsList[j].team.points;
-
-					console.log(teamsList[j]);
 
 					var $tr = $('<tr>');
 
