@@ -40,6 +40,9 @@ section {
 
 .todays-matches-container {
 	text-align: center;
+	width: 700px;
+    margin: 0 auto;
+    max-width: 95%;
 }
 
 .todays-matches-container h2 {
