@@ -1,6 +1,7 @@
 body {
 	margin: 0;
 	padding: 0;
+	font-size: 14px;
 	font-family: arial, helvetica, sans-serif;
 }
 
@@ -12,6 +13,20 @@ header {
 header h1 {
 	color: white;
 	margin: 0;
+}
+
+section {
+	margin-bottom: 40px;
+}
+
+.avatar {
+	height: 70px;
+	width: 70px;
+    display: inline-block;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .section-title {
@@ -48,21 +63,37 @@ header h1 {
 	display: inline-block;
 	width: calc(50% - 60px);
 }
+.todays-matches .match div {
+	vertical-align: top;
+}
 
 .todays-matches .match .time-vs {
 	display: inline-block;
 	width: 120px;
+	margin-top: 20px;
 }
 
 .todays-matches .match .time-vs .goals {
 	display: inline-block;
-	background: black;
+	background: #FFA824;
 	margin: 2px;
 	color: white;
 	padding: 5px;
 	width: 24px;
 	height: 24px;
 	line-height: 24px;
+}
+
+.todays-matches .match .time-vs.time-vs--playing .goals {
+	background: #1874CD;
+}
+
+.todays-matches .match .time-vs .start-time {
+	font-size: 24px;
+}
+
+.todays-matches .match .time-vs .in-progress {
+	color: #1874CD;
 }
 
 .todays-matches .match .time-vs .goals.goals--home {
@@ -73,8 +104,12 @@ header h1 {
 	margin-right: 24px;
 }
 
+.todays-matches .country-name {
+	margin: 0 0 40px;
+}
+
 .group-stage {
-	max-width: 960px;
+	max-width: 1200px;
     margin: 0 auto;
     width: 90%;
 }
@@ -123,10 +158,32 @@ header h1 {
 .group-stage .group table tbody tr th {
 	padding: 4px 6px;
 	border-bottom: 1px solid #eee;
+	vertical-align: top;
+	display: flex;
+	align-items: center;
 } 
 
 .group-stage .group table tr th {
 	text-align: left;
+}
+
+.group-stage .group .avatar {
+	height: 40px;
+	width: 40px;
+	margin-right: 10px;
+}
+
+
+.avatar-name {
+	height: 40px;
+	width: 40px;
+	margin-right: 10px;
+	line-height: 40px;
+	text-align: center;
+	color: white;
+	background: black;
+	border-radius: 50%;
+	font-size: 16px;
 }
 
 @media only screen and (max-width: 800px) {
