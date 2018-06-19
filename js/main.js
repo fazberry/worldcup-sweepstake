@@ -21,6 +21,8 @@ $(function() {
 			    var homeCountryCode = data[i].home_team.code;
 	    		var awayCountryCode = data[i].away_team.code;
 
+
+
 			    var $match = $('<div>', { 'class': 'match' }),
 			    	$home = $('<div>', { 'class': 'home' }),
 			    	$timeVs = $('<div>', { 'class': 'time-vs' }),
@@ -29,8 +31,20 @@ $(function() {
 
 			    var homePerson = getPerson(homeCountryCode, people);
 			    var awayPerson = getPerson(awayCountryCode, people);
-			    $home.append($('<div>', {'class': 'avatar', 'style': 'background-image: url(\'' + homePerson.avatar + '\')' }));
+			   
+			    var strHome = homePerson.name;
+				var matchesHome  = strHome.match(/\b(\w)/g);
+				var initialsHome = matchesHome.join(''); 
+				var strAway = awayPerson.name;
+				var matchesAway  = strAway.match(/\b(\w)/g);
+				var initialsAway = matchesAway.join(''); 
 
+
+			    if(homePerson.avatar.length) {
+			    	$home.append($('<div>', {'class': 'avatar', 'style': 'background-image: url(\'' + homePerson.avatar + '\')' }));
+			    } else {
+			    	$home.append($('<div>', {'class': 'avatar-name', 'text': initialsHome }));
+			    }
 
 			    $home.append($('<h3>', { 'text': homeTeam, 'class': 'country-name' }));
 
@@ -45,7 +59,12 @@ $(function() {
 			    		$timeVs.append($('<div>', {'text': 'In progress', 'class': 'in-progress'})).addClass('time-vs--playing');
 			    	}
 			    }
-			    $away.append($('<div>', {'class': 'avatar', 'style': 'background-image: url(\'' + awayPerson.avatar + '\')' }));
+
+			    if(awayPerson.avatar.length) {
+			    	$away.append($('<div>', {'class': 'avatar', 'style': 'background-image: url(\'' + awayPerson.avatar + '\')' }));
+			    } else {
+			    	$away.append($('<div>', {'class': 'avatar-name', 'text': initialsAway }));
+			    }
 			    $away.append($('<h3>', { 'text': awayTeam, 'class': 'country-name' }));
 			    $match.append($home);
 			    $match.append($timeVs);

@@ -19,6 +19,12 @@ section {
 	margin-bottom: 40px;
 }
 
+ul, li {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
 .avatar {
 	height: 70px;
 	width: 70px;
@@ -85,6 +91,15 @@ section {
 	width: 24px;
 	height: 24px;
 	line-height: 24px;
+}
+
+.todays-matches .match .avatar-name {
+	width: 70px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 24px;
+    display: inline-block;
+    margin: 0;
 }
 
 .todays-matches .match .time-vs.time-vs--playing .goals {
@@ -187,6 +202,96 @@ section {
 	background: black;
 	border-radius: 50%;
 	font-size: 16px;
+}
+
+section.knockout .knockout-container {
+	max-width: 1200px;
+    margin: 0 auto;
+    width: 90%;
+}
+
+section.knockout .knockout-container {
+	display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    position: relative;
+}
+
+section.knockout .knockout-container .knockout-header {
+	position: absolute;
+    top: 0;
+    width: 25%;
+    text-align: center;
+    padding-top: 0;
+    padding-right: 8px;
+    padding-bottom: 0;
+    padding-left: 8px;
+    margin-bottom: 0;
+}
+
+section.knockout .knockout-container .knockout-header--qfinals {
+	left: 25%;
+}
+section.knockout .knockout-container .knockout-header--sfinals {
+	left: 50%;
+}
+section.knockout .knockout-container .knockout-header--finals {
+	left: 75%;
+}
+
+section.knockout .knockout-container ul.knockout-column {
+	position: relative;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    list-style: none;
+    padding-top: 3rem;
+    margin-bottom: 0;
+    border-top: 0;
+    border-right: 1px dashed #c5c5c5;
+}
+
+section.knockout .knockout-container ul.knockout-column:last-of-type {
+    border-right: 0;
+}
+
+section.knockout .knockout-container ul.knockout-column li {
+	background: #f4f4f4;
+    position: relative;
+    border-bottom: 2px solid #dbdada;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.5rem;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+section.knockout .knockout-container ul.knockout-column li .fixture .team, 
+section.knockout .knockout-container ul.knockout-column li .fixture .time-vs {
+	display: inline-block;
+}
+
+
+section.knockout .knockout-container ul.knockout-column li .avatar {
+	width: 40px;
+	height: 40px;
 }
 
 @media only screen and (max-width: 800px) {
