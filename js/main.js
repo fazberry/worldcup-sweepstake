@@ -146,8 +146,6 @@ $(function() {
 		});
 	};
 
-
-
 	function getPerson(code, people) {
 		for(var j = 0; j < people.length; j++) {
 			var person = people[j];
