@@ -1,11 +1,10 @@
 $(function() {
 
-	var allMatches = 'http://worldcup.sfg.io/matches';
 	var matchesToday =  'http://worldcup.sfg.io/matches/today';
-	var currentMatch = 'http://worldcup.sfg.io/matches/current';
-	var teamResults = 'http://worldcup.sfg.io/teams/results';
 	var groupResults = 'http://worldcup.sfg.io/teams/group_results';
+	var knockoutResults = 'https://raw.githubusercontent.com/lsv/fifa-worldcup-2018/master/data.json';
 	var participants = 'http://files.sequelgroup.co.uk/sweepstake/participants.json';
+
 
 	function todaysMatches(people) {
 		$.getJSON(matchesToday, function(data) {
@@ -79,11 +78,33 @@ $(function() {
 	function groups(people) {
 		$.getJSON(groupResults, function(data) {
 
-		//	console.log(data);
+			//console.log(data);
+
+			var leters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+			for (var group = 0; group < 8; group++) {
+				for (var position = 0; position < 2; position++) {
+					var team = data[group].group.teams[position].team,
+						groupLetter = leters[group];
+
+					var $target = $('.team--' + groupLetter + (position + 1));
+					var person = getPerson(team.fifa_code, people);
+
+					// console.log(team.fifa_code);
+
+					// console.log(person);
+
+					$target.find('h4').text(team.country);
+
+					$target.find('.avatar').css({
+						'background-image' : 'url(\'' + person.avatar + '\')',
+						'text-indent' : -9999
+					});
+				}
+			}
 			
 			for(i = 0; i < data.length; i++) {
 
-				console.log(data[i]);
+				//console.log(data[i]);
 
 				var groupLetter = data[i].group.letter;
 				var teamsList = data[i].group.teams;
@@ -102,16 +123,6 @@ $(function() {
 					$thead.append($('<th>', { 'text': 'Country' }));
 					$thead.append($('<th>', { 'text': 'GD' }));
 					$thead.append($('<th>', { 'text': 'Pts' }));
-
-
-
-				if(data[i].group.letter === 'A') {
-
-
-					$('.team--a1 h4').text(teamsList[0].country);
-
-				}
-
 
 					
 				for(j = 0; j < teamsList.length; j++) {
@@ -156,6 +167,17 @@ $(function() {
 
 		});
 	};
+
+	function knockout(people) {
+		$.getJSON(knockoutResults, function(data) {
+
+			console.log(data.knockout);
+
+		});
+	}
+
+	knockout();
+
 
 	function getPerson(code, people) {
 		for(var j = 0; j < people.length; j++) {
