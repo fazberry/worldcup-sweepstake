@@ -8,68 +8,74 @@ $(function() {
 
 	function todaysMatches(people) {
 		$.getJSON(matchesToday, function(data) {
+			if(data.length) {
 			
-			for(i = 0; i < data.length; i++) {
+				for(i = 0; i < data.length; i++) {
 
-			    var homeTeam = data[i].home_team.country;
-			    var awayTeam = data[i].away_team.country;
-			    var datetime = data[i].datetime;
-			    datetime = moment(datetime, "YYYY/MM/DD HH:mm:ss Z");
-			    var homeGoals = data[i].home_team.goals;
-			    var awayGoals = data[i].away_team.goals;
-			    var homeCountryCode = data[i].home_team.code;
-	    		var awayCountryCode = data[i].away_team.code;
-
-
-
-			    var $match = $('<div>', { 'class': 'match' }),
-			    	$home = $('<div>', { 'class': 'home' }),
-			    	$timeVs = $('<div>', { 'class': 'time-vs' }),
-			    	$away = $('<div>', { 'class': 'away' });
+				    var homeTeam = data[i].home_team.country;
+				    var awayTeam = data[i].away_team.country;
+				    var datetime = data[i].datetime;
+				    datetime = moment(datetime, "YYYY/MM/DD HH:mm:ss Z");
+				    var homeGoals = data[i].home_team.goals;
+				    var awayGoals = data[i].away_team.goals;
+				    var homeCountryCode = data[i].home_team.code;
+		    		var awayCountryCode = data[i].away_team.code;
 
 
-			    var homePerson = getPerson(homeCountryCode, people);
-			    var awayPerson = getPerson(awayCountryCode, people);
-			   
-			    var strHome = homePerson.name;
-				var matchesHome  = strHome.match(/\b(\w)/g);
-				var initialsHome = matchesHome.join(''); 
-				var strAway = awayPerson.name;
-				var matchesAway  = strAway.match(/\b(\w)/g);
-				var initialsAway = matchesAway.join(''); 
+
+				    var $match = $('<div>', { 'class': 'match' }),
+				    	$home = $('<div>', { 'class': 'home' }),
+				    	$timeVs = $('<div>', { 'class': 'time-vs' }),
+				    	$away = $('<div>', { 'class': 'away' });
 
 
-			    if(homePerson.avatar.length) {
-			    	$home.append($('<div>', {'class': 'avatar', 'style': 'background-image: url(\'' + homePerson.avatar + '\')' }));
-			    } else {
-			    	$home.append($('<div>', {'class': 'avatar-name', 'text': initialsHome }));
-			    }
+				    var homePerson = getPerson(homeCountryCode, people);
+				    var awayPerson = getPerson(awayCountryCode, people);
+				   
+				    var strHome = homePerson.name;
+					var matchesHome  = strHome.match(/\b(\w)/g);
+					var initialsHome = matchesHome.join(''); 
+					var strAway = awayPerson.name;
+					var matchesAway  = strAway.match(/\b(\w)/g);
+					var initialsAway = matchesAway.join(''); 
 
-			    $home.append($('<h3>', { 'text': homeTeam, 'class': 'country-name' }));
 
-			    if(datetime > moment()) {
-			    	var time = datetime.format('k:mm');
+				    if(homePerson.avatar.length) {
+				    	$home.append($('<div>', {'class': 'avatar', 'style': 'background-image: url(\'' + homePerson.avatar + '\')' }));
+				    } else {
+				    	$home.append($('<div>', {'class': 'avatar-name', 'text': initialsHome }));
+				    }
 
-			    	$timeVs.append($('<div>', {'text': time, 'class': 'start-time'}));
-			    } else {
-			    	$timeVs.append($('<div>', {'text': homeGoals, 'class': 'goals goals--home'}));
-			    	$timeVs.append($('<div>', {'text': awayGoals, 'class': 'goals goals--away'}));
-			    	if(datetime.add(120, 'minutes') > moment()) {
-			    		$timeVs.append($('<div>', {'text': 'In progress', 'class': 'in-progress'})).addClass('time-vs--playing');
-			    	}
-			    }
+				    $home.append($('<h3>', { 'text': homeTeam, 'class': 'country-name' }));
 
-			    if(awayPerson.avatar.length) {
-			    	$away.append($('<div>', {'class': 'avatar', 'style': 'background-image: url(\'' + awayPerson.avatar + '\')' }));
-			    } else {
-			    	$away.append($('<div>', {'class': 'avatar-name', 'text': initialsAway }));
-			    }
-			    $away.append($('<h3>', { 'text': awayTeam, 'class': 'country-name' }));
-			    $match.append($home);
-			    $match.append($timeVs);
-			    $match.append($away);
+				    if(datetime > moment()) {
+				    	var time = datetime.format('k:mm');
 
-			    $('.todays-matches').append($match);
+				    	$timeVs.append($('<div>', {'text': time, 'class': 'start-time'}));
+				    } else {
+				    	$timeVs.append($('<div>', {'text': homeGoals, 'class': 'goals goals--home'}));
+				    	$timeVs.append($('<div>', {'text': awayGoals, 'class': 'goals goals--away'}));
+				    	if(datetime.add(120, 'minutes') > moment()) {
+				    		$timeVs.append($('<div>', {'text': 'In progress', 'class': 'in-progress'})).addClass('time-vs--playing');
+				    	}
+				    }
+
+				    if(awayPerson.avatar.length) {
+				    	$away.append($('<div>', {'class': 'avatar', 'style': 'background-image: url(\'' + awayPerson.avatar + '\')' }));
+				    } else {
+				    	$away.append($('<div>', {'class': 'avatar-name', 'text': initialsAway }));
+				    }
+				    $away.append($('<h3>', { 'text': awayTeam, 'class': 'country-name' }));
+				    $match.append($home);
+				    $match.append($timeVs);
+				    $match.append($away);
+				    
+				    $('.todays-matches').append($match);
+					 
+
+				}
+			} else {
+				$('.todays-matches').text('There are no matches today');
 			}
 
 		});
@@ -78,26 +84,6 @@ $(function() {
 	function groups(people) {
 		$.getJSON(groupResults, function(data) {
 
-			// var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
-			// for (var group = 0; group < 8; group++) {
-			// 	for (var position = 0; position < 2; position++) {
-			// 		var team = data[group].ordered_teams[position],
-			// 			groupLetter = letters[group];
-
-			// 		var $target = $('.team--' + groupLetter + (position + 1));
-			// 		var person = getPerson(team.fifa_code, people);
-
-			// 		$target.find('h4').text(team.country);
-
-			// 		$target.find('.avatar').css({
-			// 			'background-image' : 'url(\'' + person.avatar + '\')',
-			// 			'text-indent' : -9999
-			// 		});
-			// 	}
-			// }
-
-		//	console.log(data);
-			
 			for(i = 0; i < data.length; i++) {
 
 				var groupLetter = data[i].letter;
@@ -133,8 +119,6 @@ $(function() {
 					var initials = matches.join('');  
 
 
-					// console.log(countryCode, person);
-
 					var $tr = $('<tr>');
 					var $country = $('<th>');
 
@@ -160,18 +144,57 @@ $(function() {
 
 	function knockout(people) {
 		$.getJSON(knockoutResults, function(data) {
+			
+			var knockout16 = data.knockout.round_16.matches;
+			var teams = data.teams;
 
-			console.log(data);
+			for(var i = 0; i < knockout16.length; i++) {
 
-			var knockout16 = data.knockout.round_16;
+				var bigDate = knockout16[i].date;
+			    var bigDate = moment(bigDate, "YYYY/MM/DD HH:mm:ss Z");
+			    var date = bigDate.format('D MMMM');
+			    var time = bigDate.format('k:mm');
 
-			console.log(knockout16);
+			    var homeTeam = knockout16[i].home_team;
+			    var awayTeam = knockout16[i].away_team;
 
+				homeTeam = teams[homeTeam - 1];			    
+				awayTeam = teams[awayTeam - 1];
+
+				var homePerson = getPerson(homeTeam.fifaCode, people);
+				var awayPerson = getPerson(awayTeam.fifaCode, people);
+
+				var homeGoals = knockout16[1].home_result,
+					awayGoals = knockout16[1].away_result;
+
+				var $home = $('<div>', { 'class': 'home' }),
+			    	$away = $('<div>', { 'class': 'away' });
+
+			    	$timeVs = $('.knockout-column--first-round li:eq(' + i + ') .time-vs');
+
+				if(bigDate < moment()) {
+
+			    	$timeVs.append($('<div>', {'text': homeGoals, 'class': 'goals goals--home'}));
+			    	$timeVs.append($('<div>', {'text': awayGoals, 'class': 'goals goals--away'}));
+			    	if(bigDate.add(180, 'minutes') > moment()) {
+			    		$timeVs.append($('<div>', {'text': 'In progress', 'class': 'in-progress'})).addClass('time-vs--playing');
+			    	}
+			    } else {
+					$('.knockout-column--first-round li:eq(' + i + ') .time-vs').text(time);
+			    }
+
+			  
+
+				$('.knockout-column--first-round li:eq(' + i + ') .date').text(date);
+				$('.knockout-column--first-round li:eq(' + i + ') .team--home .avatar').css('background-image', 'url("'+  homePerson.avatar  +'")');
+				$('.knockout-column--first-round li:eq(' + i + ') .team--away .avatar').css('background-image', 'url("'+  awayPerson.avatar  +'")');
+				$('.knockout-column--first-round li:eq(' + i + ') .team--home h4').text(homePerson.country );
+				$('.knockout-column--first-round li:eq(' + i + ') .team--away h4').text(awayPerson.country);
+
+			}
 
 		});
 	}
-
-	knockout();
 
 
 	function getPerson(code, people) {
@@ -187,6 +210,7 @@ $(function() {
 	$.getJSON(participants, function(data) {
 		todaysMatches(data);
 		groups(data);
+		knockout(data);
 	});
 
 
