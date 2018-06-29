@@ -1,11 +1,10 @@
 $(function() {
 
-	var allMatches = 'http://worldcup.sfg.io/matches';
-	var matchesToday =  'http://worldcup.sfg.io/matches/today';
-	var currentMatch = 'http://worldcup.sfg.io/matches/current';
-	var teamResults = 'http://worldcup.sfg.io/teams/results';
-	var groupResults = 'http://worldcup.sfg.io/teams/group_results';
-	var participants = 'http://files.sequelgroup.co.uk/sweepstake/participants.json';
+	var matchesToday =  'https://worldcup.sfg.io/matches/today';
+	var groupResults = 'https://worldcup.sfg.io/teams/group_results';
+	var knockoutResults = 'https://raw.githubusercontent.com/lsv/fifa-worldcup-2018/master/data.json';
+	var participants = 'https://files.sequelgroup.co.uk/sweepstake/participants.json';
+
 
 	function todaysMatches(people) {
 		$.getJSON(matchesToday, function(data) {
@@ -79,12 +78,30 @@ $(function() {
 	function groups(people) {
 		$.getJSON(groupResults, function(data) {
 
+			// var letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+			// for (var group = 0; group < 8; group++) {
+			// 	for (var position = 0; position < 2; position++) {
+			// 		var team = data[group].ordered_teams[position],
+			// 			groupLetter = letters[group];
+
+			// 		var $target = $('.team--' + groupLetter + (position + 1));
+			// 		var person = getPerson(team.fifa_code, people);
+
+			// 		$target.find('h4').text(team.country);
+
+			// 		$target.find('.avatar').css({
+			// 			'background-image' : 'url(\'' + person.avatar + '\')',
+			// 			'text-indent' : -9999
+			// 		});
+			// 	}
+			// }
+
 		//	console.log(data);
 			
 			for(i = 0; i < data.length; i++) {
 
-				var groupLetter = data[i].group.letter;
-				var teamsList = data[i].group.teams;
+				var groupLetter = data[i].letter;
+				var teamsList = data[i].ordered_teams;
 
 				var $container = $('<div>', { 'class': 'group' }),
 					$table = $('<table>'),
@@ -101,18 +118,13 @@ $(function() {
 					$thead.append($('<th>', { 'text': 'GD' }));
 					$thead.append($('<th>', { 'text': 'Pts' }));
 
-
 					
 				for(j = 0; j < teamsList.length; j++) {
 
-					//console.log(teamsList[j]);
-
-					//console.log(countryCode);
-
-					var countryCode = teamsList[j].team.fifa_code;
-					var country = teamsList[j].team.country;
-					var gd = teamsList[j].team.goal_differential;
-					var pts = teamsList[j].team.points;
+					var countryCode = teamsList[j].fifa_code;
+					var country = teamsList[j].country;
+					var gd = teamsList[j].goal_differential;
+					var pts = teamsList[j].points;
 					
 					var person = getPerson(countryCode, people);
 
@@ -145,6 +157,22 @@ $(function() {
 
 		});
 	};
+
+	function knockout(people) {
+		$.getJSON(knockoutResults, function(data) {
+
+			console.log(data);
+
+			var knockout16 = data.knockout.round_16;
+
+			console.log(knockout16);
+
+
+		});
+	}
+
+	knockout();
+
 
 	function getPerson(code, people) {
 		for(var j = 0; j < people.length; j++) {

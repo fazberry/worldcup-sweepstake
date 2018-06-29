@@ -17,6 +17,7 @@ header h1 {
 
 section {
 	margin-bottom: 40px;
+    overflow: hidden;
 }
 
 ul, li {
