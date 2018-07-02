@@ -2,6 +2,8 @@
 
 Create json object with the sweepstake participants
 
+Just create a json file with your participants details:
+
 ````
 [{
     "code": "RUS",
