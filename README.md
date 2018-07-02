@@ -32,4 +32,8 @@ Just create a json file with your participants details:
 
 ````
 
+
+
+Using this api for the knockout stages https://github.com/lsv/fifa-worldcup-2018 and this one for https://worldcup.sfg.io for todays matches (as it is updated every minute) and the group stages.
+
 Here is a working <a href="https://rodfarry.co.uk/sweep/" target="_blank">demo</a>
