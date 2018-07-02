@@ -26,6 +26,12 @@ ul, li {
 	list-style-type: none;
 }
 
+.penalties {
+    font-size: 0.8em;
+    margin: 10px 5px 5px;
+    color: #999;
+}
+
 .avatar {
 	height: 70px;
 	width: 70px;
@@ -289,6 +295,25 @@ section.knockout .knockout-container ul.knockout-column li.knockout-item {
 section.knockout .knockout-container ul.knockout-column li.knockout-item .fixture .team, 
 section.knockout .knockout-container ul.knockout-column li.knockout-item .fixture .time-vs {
 	display: inline-block;
+}
+
+section.knockout .knockout-container ul.knockout-column li.knockout-item .fixture .time-vs .goals {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    background: #FFA824;
+    color: white;
+    margin: 1px;
+}
+
+section.knockout .knockout-container ul.knockout-column li.knockout-item .fixture .time-vs.time-vs--playing .goals {
+    background: #1874CD;
+}
+
+section.knockout .knockout-container ul.knockout-column li.knockout-item .fixture .time-vs .in-progress {
+    color: #1874CD;
 }
 
 section.knockout .knockout-container ul.knockout-column li.knockout-item .fixture .date {
