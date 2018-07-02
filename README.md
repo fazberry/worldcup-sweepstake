@@ -32,4 +32,4 @@ Just create a json file with your participants details:
 
 ````
 
-Here is a working demo https://rodfarry.co.uk/sweep/
+Here is a working [demo](https://rodfarry.co.uk/sweep/){:target="_blank"} 
