@@ -244,21 +244,21 @@ $(function() {
 			    	awayPenalty = knockout8[j].away_penalty;
 
 			    if(homePenalty == null || awayPenalty == null) {
-			    	$('.knockout-column--qfinals li:eq(' + j + ') .penalties').hide();
+			    	$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .penalties').hide();
 			    } else {
 			    	if(homePenalty > awayPenalty) {
-			    		$('.knockout-column--qfinals li:eq(' + j + ') .penalties .winner-team').text(homePerson.country);
-			    		$('.knockout-column--qfinals li:eq(' + j + ') .penalties .winner-score').text(homePenalty);
-			    		$('.knockout-column--qfinals li:eq(' + j + ') .penalties .looser-score').text(awayPenalty);
+			    		$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .penalties .winner-team').text(homePerson.country);
+			    		$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .penalties .winner-score').text(homePenalty);
+			    		$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .penalties .looser-score').text(awayPenalty);
 			    	} else {
-						$('.knockout-column--qfinals li:eq(' + j + ') .penalties .winner-team').text(awayPerson.country);
-			    		$('.knockout-column--qfinals li:eq(' + j + ') .penalties .winner-score').text(awayPenalty);
-			    		$('.knockout-column--qfinals li:eq(' + j + ') .penalties .looser-score').text(homePenalty);
+						$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .penalties .winner-team').text(awayPerson.country);
+			    		$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .penalties .winner-score').text(awayPenalty);
+			    		$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .penalties .looser-score').text(homePenalty);
 			    	}
 			    	
 			    }
 
-			    	$timeVs = $('.knockout-column--qfinals li:eq(' + j + ') .time-vs');
+			    	$timeVs = $('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .time-vs');
 
 				if(bigDate < moment()) {
 
@@ -268,16 +268,16 @@ $(function() {
 			    		$timeVs.append($('<div>', {'text': 'In progress', 'class': 'in-progress'})).addClass('time-vs--playing');
 			    	}
 			    } else {
-					$('.knockout-column--qfinals li:eq(' + j + ') .time-vs').text(time);
+					$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .time-vs').text(time);
 			    }
 
 			  
 
-				$('.knockout-column--qfinals li:eq(' + j + ') .date').text(date);
-				$('.knockout-column--qfinals li:eq(' + j + ') .team--home .avatar').css('background-image', 'url("'+  homePerson.avatar  +'")');
-				$('.knockout-column--qfinals li:eq(' + j + ') .team--away .avatar').css('background-image', 'url("'+  awayPerson.avatar  +'")');
-				$('.knockout-column--qfinals li:eq(' + j + ') .team--home h4').text(homePerson.country );
-				$('.knockout-column--qfinals li:eq(' + j + ') .team--away h4').text(awayPerson.country);
+				$('.knockout-column--qfinals liknockout-item__line--2nd-column:eq(' + j + ') .date').text(date);
+				$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .team--home .avatar').css('background-image', 'url("'+  homePerson.avatar  +'")');
+				$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .team--away .avatar').css('background-image', 'url("'+  awayPerson.avatar  +'")');
+				$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .team--home h4').text(homePerson.country );
+				$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .team--away h4').text(awayPerson.country);
 			}
 
 		});
