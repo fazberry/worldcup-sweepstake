@@ -147,9 +147,10 @@ $(function() {
 			
 			var knockout16 = data.knockout.round_16.matches;
 			var knockout8 = data.knockout.round_8.matches;
+			var knockout4 = data.knockout.round_4.matches;
 			var teams = data.teams;
 
-			console.log(knockout8);
+		//	console.log(data);
 
 			for(var i = 0; i < knockout16.length; i++) {
 
@@ -278,6 +279,75 @@ $(function() {
 				$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .team--away .avatar').css('background-image', 'url("'+  awayPerson.avatar  +'")');
 				$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .team--home h4').text(homePerson.country );
 				$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .team--away h4').text(awayPerson.country);
+			}
+
+			for(var k = 0; k < knockout4.length; k++) {
+
+				console.log(knockout4[k]);
+
+				var bigDate = knockout4[k].date;
+			    var bigDate = moment(bigDate, "YYYY/MM/DD HH:mm:ss Z");
+			    var date = bigDate.format('D MMMM');
+			    var time = bigDate.format('k:mm');
+
+			    var homeTeam = knockout4[k].home_team;
+			    var awayTeam = knockout4[k].away_team;
+
+				homeTeam = teams[homeTeam - 1];			    
+				awayTeam = teams[awayTeam - 1];
+
+				if(homeTeam) {
+					var homePerson = getPerson(homeTeam.fifaCode, people);	
+				}
+				if(awayTeam) {
+					var awayPerson = getPerson(awayTeam.fifaCode, people);
+				}
+				
+
+				var homeGoals = knockout4[k].home_result,
+					awayGoals = knockout4[k].away_result;
+
+				var $home = $('<div>', { 'class': 'home' }),
+			    	$away = $('<div>', { 'class': 'away' });
+
+			    var homePenalty = knockout4[k].home_penalty,
+			    	awayPenalty = knockout4[k].away_penalty;
+
+			    if(homePenalty == null || awayPenalty == null) {
+			    	$('.knockout-column--sfinals li.knockout-item__line--3rd-column:eq(' + k + ') .penalties').hide();
+			    } else {
+			    	if(homePenalty > awayPenalty) {
+			    		$('.knockout-column--sfinals li.knockout-item__line--3rd-column:eq(' + k + ') .penalties .winner-team').text(homePerson.country);
+			    		$('.knockout-column--sfinals li.knockout-item__line--3rd-column:eq(' + k + ') .penalties .winner-score').text(homePenalty);
+			    		$('.knockout-column--sfinals li.knockout-item__line--3rd-column:eq(' + k + ') .penalties .looser-score').text(awayPenalty);
+			    	} else {
+						$('.knockout-column--sfinals li.knockout-item__line--3rd-column:eq(' + k + ') .penalties .winner-team').text(awayPerson.country);
+			    		$('.knockout-column--sfinals li.knockout-item__line--3rd-column:eq(' + k + ') .penalties .winner-score').text(awayPenalty);
+			    		$('.knockout-column--sfinals li.knockout-item__line--3rd-column:eq(' + k + ') .penalties .looser-score').text(homePenalty);
+			    	}
+			    	
+			    }
+
+			    	$timeVs = $('.knockout-column--sfinals li.knockout-item__line--3rd-column:eq(' + k + ') .time-vs');
+
+				if(bigDate < moment()) {
+
+			    	$timeVs.append($('<div>', {'text': homeGoals, 'class': 'goals goals--home'}));
+			    	$timeVs.append($('<div>', {'text': awayGoals, 'class': 'goals goals--away'}));
+			    	if(bigDate.add(180, 'minutes') > moment()) {
+			    		$timeVs.append($('<div>', {'text': 'In progress', 'class': 'in-progress'})).addClass('time-vs--playing');
+			    	}
+			    } else {
+					$('.knockout-column--sfinals li.knockout-item__line--3rd-column:eq(' + k + ') .time-vs').text(time);
+			    }
+
+			  
+
+				$('.knockout-column--sfinals li.knockout-item__line--3rd-column:eq(' + k + ') .date').text(date);
+				$('.knockout-column--sfinals li.knockout-item__line--3rd-column:eq(' + k + ') .team--home .avatar').css('background-image', 'url("'+  homePerson.avatar  +'")');
+				$('.knockout-column--sfinals li.knockout-item__line--3rd-column:eq(' + k + ') .team--away .avatar').css('background-image', 'url("'+  awayPerson.avatar  +'")');
+				$('.knockout-column--sfinals li.knockout-item__line--3rd-column:eq(' + k + ') .team--home h4').text(homePerson.country );
+				$('.knockout-column--sfinals li.knockout-item__line--3rd-column:eq(' + k + ') .team--away h4').text(awayPerson.country);
 			}
 
 		});
