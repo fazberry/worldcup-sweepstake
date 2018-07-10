@@ -274,7 +274,7 @@ $(function() {
 
 			  
 
-				$('.knockout-column--qfinals liknockout-item__line--2nd-column:eq(' + j + ') .date').text(date);
+				$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .date').text(date);
 				$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .team--home .avatar').css('background-image', 'url("'+  homePerson.avatar  +'")');
 				$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .team--away .avatar').css('background-image', 'url("'+  awayPerson.avatar  +'")');
 				$('.knockout-column--qfinals li.knockout-item__line--2nd-column:eq(' + j + ') .team--home h4').text(homePerson.country );
