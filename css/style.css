@@ -397,7 +397,7 @@ section.knockout .knockout-container ul.knockout-column li.knockout-item .fixtur
 	top: 50%;
 }
 
-.knockout-item__line--2st-column::after {
+.knockout-item__line--2nd-column::after {
     height: 150%;
 }
 
