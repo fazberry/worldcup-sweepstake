@@ -3,7 +3,7 @@ $(function() {
 	var matchesToday =  'https://worldcup.sfg.io/matches/today';
 	var groupResults = 'https://worldcup.sfg.io/teams/group_results';
 	var knockoutResults = 'https://raw.githubusercontent.com/lsv/fifa-worldcup-2018/master/data.json';
-	var participants = 'https://files.sequelgroup.co.uk/sweepstake/participants.json';
+	var participants = 'https://rodfarry.co.uk/sweep/participants.json';
 
 
 	function todaysMatches(people) {
